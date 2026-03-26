@@ -45,7 +45,8 @@ spec:
       local version_label="$2"
       local release_label="$3"
       local image_num="$4"
-      # Clean up OCI image (may or may not exist depending on failure point)
+      # Clean up OCI image. The OCI image layout is a directory on the filesystem.
+      # The path to this directory does not include the ':latest' tag, which is an OCI image reference detail.
       rm -rf "/tekton/home/${component_label}-${version_label}-${release_label}-${image_num}" 2>/dev/null || true
       # Clean up unpacked directory (may or may not exist depending on failure point)
       rm -rf "/tekton/home/unpacked-${component_label}-${version_label}-${release_label}-${image_num}" 2>/dev/null || true
